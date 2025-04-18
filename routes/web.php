@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\UserManagementController;
+use App\Models\Program;
 use Illuminate\Support\Facades\Route;
 
 // Home Route
@@ -39,4 +40,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
     Route::post('/programs', [ProgramController::class, 'store'])->name('programs.store');
 });
+// total core programs 
+Route::get('/total-core-programs', [ProgramController::class, 'allCorePrograms'])->name('total.core.programs');
+
 

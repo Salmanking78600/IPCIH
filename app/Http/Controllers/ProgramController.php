@@ -14,7 +14,15 @@ class ProgramController extends Controller
         return view('admin.adminpages.dashaddcore');
     }
 
-  
+    public function allCorePrograms()
+    {
+        // Fetch all core programs (active or all, as needed)
+        $programs = Program::all(); // or ->where('status', 1)->get();
+    
+        // Return view with data
+        return view('admin.adminpages.dashtotalcore', compact('programs'));
+    }
+    
 
     // Store the new program in the database
     public function store(Request $request)

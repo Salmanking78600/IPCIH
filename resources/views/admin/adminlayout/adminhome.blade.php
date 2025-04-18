@@ -90,6 +90,12 @@
                             <div class="text-white">Add Core Programs</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="{{ route('total.core.programs') }}" class="menu-link">
+                            <i class="menu-icon text-white tf-icons bx bx-home-circle"></i>
+                            <div class="text-white">Total Core Programs</div>
+                        </a>
+                    </li>
                 </ul>
             </aside>
             <!-- / Menu -->

@@ -134,22 +134,33 @@
 
     {{-- our core programs area  --}}
     <div class="core-program-container py-5">
-        <h2 class="core-program-heading text-center mb-4">Our Core Programs</h2>
+        <h2 class="core-program-heading text-center mb-5 text-white">Our Core Programs</h2>
 
-        <div class="swiper coreProgramSwiper">
+        <div class="swiper coreProgramSwiper px-2">
             <div class="swiper-wrapper">
-                @foreach($programs as $program)
+                @foreach ($programs as $program)
                     <div class="swiper-slide">
-                        <div class="card shadow-lg border-0">
-                            <!-- Display Program Image -->
-                            @if($program->image)
-                                <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top" alt="{{ $program->title }}">
+                        <div class="card program-card position-relative overflow-hidden border-0 shadow-lg rounded-4"
+                            style="height: 350px; background: linear-gradient(135deg, #0f9b0f, #000000);">
+
+                            <!-- Image -->
+                            @if ($program->image)
+                                <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top"
+                                    alt="{{ $program->title }}" style="height: 200px; object-fit: cover;">
                             @else
-                                <img src="{{ asset('default-image.jpg') }}" class="card-img-top" alt="{{ $program->title }}">
+                                <img src="{{ asset('default-image.jpg') }}" class="card-img-top"
+                                    alt="{{ $program->title }}" style="height: 200px; object-fit: cover;">
                             @endif
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $program->title }}</h5>
-                                <p class="card-text">{{ \Str::limit($program->description, 100) }}</p>
+
+                            <!-- Title -->
+                            <div class="card-body text-white">
+                                <h5 class="card-title fw-bold">{{ $program->title }}</h5>
+                            </div>
+
+                            <!-- Description Overlay -->
+                            <div
+                                class="program-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center px-3">
+                                <p class="text-white">{{ \Str::limit($program->description, 150) }}</p>
                             </div>
                         </div>
                     </div>
@@ -157,6 +168,39 @@
             </div>
         </div>
     </div>
+    <style>
+        .program-card {
+            position: relative;
+            height: 280px !important;
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 255, 150, 0.3);
+        }
+
+        .program-overlay {
+            background: rgba(39, 136, 0, 0.85);
+            /* Slate semi-transparent */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 1rem;
+        }
+
+        .program-card:hover .program-overlay {
+            opacity: 1;
+        }
+
+        .card-title {
+            color: white !important;
+        }
+
+        .card-text {
+            color: white !important;
+        }
+    </style>
+
 
 
 
