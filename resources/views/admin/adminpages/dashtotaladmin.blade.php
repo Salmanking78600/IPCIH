@@ -54,7 +54,7 @@
                 {{-- Edit Modal  --}}
                 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content bg-dark text-white">
+                        <div class="modal-content" style="background: linear-gradient(135deg, #28a745, #34b936); color: white;">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="editModalLabel">Edit User</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -86,7 +86,7 @@
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content bg-dark text-white">
+                        <div class="modal-content" style="background: linear-gradient(135deg, #28a745, #34b936); color: white;">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
