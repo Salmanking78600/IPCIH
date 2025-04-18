@@ -34,7 +34,7 @@
                                         data-email="{{ $user->email }}" data-id="{{ $user->id }}">
                                         Edit
                                     </button>
-                                    
+
                                     <!-- Delete Button -->
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#deleteModal" data-user="{{ $user->name }}"
@@ -50,11 +50,12 @@
                         @endforelse
                     </tbody>
                 </table>
-                
+
                 {{-- Edit Modal  --}}
                 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content" style="background: linear-gradient(135deg, #28a745, #34b936); color: white;">
+                        <div class="modal-content"
+                            style="background: linear-gradient(135deg, #28a745, #34b936); color: white;">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="editModalLabel">Edit User</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
@@ -86,7 +87,8 @@
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content" style="background: linear-gradient(135deg, #28a745, #34b936); color: white;">
+                        <div class="modal-content"
+                            style="background: linear-gradient(135deg, #28a745, #34b936); color: white;">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"

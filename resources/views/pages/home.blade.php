@@ -133,35 +133,30 @@
 
 
     {{-- our core programs area  --}}
-    <div class="core-program-container">
-        <!-- Core Program Heading -->
-        <h2 class="core-program-heading">Our Core Programs</h2>
+    <div class="core-program-container py-5">
+        <h2 class="core-program-heading text-center mb-4">Our Core Programs</h2>
 
         <div class="swiper coreProgramSwiper">
             <div class="swiper-wrapper">
-                <!-- Card 1 -->
-                <div class="swiper-slide">
-                    <div class="card">
-                        <img src="{{ asset('webimages/ipcihlogo.png') }}" alt="Image">
-                        <div class="card-content">
-                            <h3 class="card-title">Web Development</h3>
-                        </div>
-                        <div class="card-details">
-                            <p>Build modern websites using HTML, CSS, JS, and backend tools.</p>
+                @foreach($programs as $program)
+                    <div class="swiper-slide">
+                        <div class="card shadow-lg border-0">
+                            <!-- Display Program Image -->
+                            @if($program->image)
+                                <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top" alt="{{ $program->title }}">
+                            @else
+                                <img src="{{ asset('default-image.jpg') }}" class="card-img-top" alt="{{ $program->title }}">
+                            @endif
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $program->title }}</h5>
+                                <p class="card-text">{{ \Str::limit($program->description, 100) }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-
-
-
-
+                @endforeach
             </div>
-
-            <!-- Optional Swiper Controls -->
         </div>
     </div>
-
 
 
 
