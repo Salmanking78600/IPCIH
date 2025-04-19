@@ -36,15 +36,32 @@
             <div class="col-lg-4 mb-4 order-0">
                 <div class="card shadow" style="background: linear-gradient(135deg, #28a745, #218838); color: white;">
                     <div class="card-header d-flex justify-content-between align-items-center border-0">
-                        <h5 class="mb-0">
+                        <h5 class="mb-0 text-white">
                             <i class="bx bx-shield-quarter me-2"></i> Total Admins
                         </h5>
                         <small class="text-white-50">System Info</small>
                     </div>
                     <div class="card-body text-center">
-                        <i class="bx bx-user-circle bx-lg mb-3 d-block"></i>
-                        <h1 class="display-4 fw-bold mb-2">{{ $totalAdmins }}</h1>
+                        <i class="bx bx-user-circle bx-lg mb-3 d-block text-white"></i>
+                        <h1 class="display-4 fw-bold mb-2 text-white">{{ $totalAdmins }}</h1>
                         <p class="mb-0 text-white-75">Admins Registered</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Core Programs Card -->
+            <div class="col-lg-4 mb-4 order-0">
+                <div class="card shadow" style="background: linear-gradient(135deg, #28a745, #218838); color: white;">
+                    <div class="card-header d-flex justify-content-between align-items-center border-0">
+                        <h5 class="mb-0 text-white">
+                            <i class="bx bx-book me-2 text-white"></i> Total Core Programs
+                        </h5>
+                        <small class="text-white-50">System Info</small>
+                    </div>
+                    <div class="card-body text-center">
+                        <i class="bx bx-bulb bx-lg mb-3 d-block"></i>
+                        <h1 class="display-4 fw-bold mb-2 text-white">{{ $totalPrograms }}</h1>
+                        <p class="mb-0 text-white">Core Programs Available</p>
                     </div>
                 </div>
             </div>

@@ -3,186 +3,144 @@
 @section('title', 'Total Core Programs - IPCIH')
 
 @section('admin')
-    <div class="container py-4">
-        <h2 class="mb-4 text-center text-white">Total Core Programs</h2>
+<div class="container py-4">
+    <h2 class="mb-4 text-center text-white">Total Core Programs</h2>
 
-        @if(session('success'))
-            <script>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: '{{ session('success') }}',
-                    confirmButtonText: 'OK'
-                });
-            </script>
-        @endif
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
 
-        @if(session('error'))
-            <script>
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!',
-                    text: '{{ session('error') }}',
-                    confirmButtonText: 'OK'
-                });
-            </script>
-        @endif
+    @if(session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
 
-        <div class="table-responsive">
-            <table class="table custom-table text-center align-middle">
-                <thead class="table-header">
-                    <tr>
-                        <th>#</th>
-                        <th>Program Title</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Image</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($programs as $index => $program)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $program->title }}</td>
-                            <td>{{ \Str::limit($program->description, 100) }}</td>
-                            <td>
-                                @if($program->status == 1)
-                                    <span class="badge bg-success">Active</span>
-                                    <a href="{{ route('programs.updateStatus', $program->id) }}" class="btn btn-warning btn-sm">Deactivate</a>
-                                @else
-                                    <span class="badge bg-secondary">Inactive</span>
-                                    <a href="{{ route('programs.updateStatus', $program->id) }}" class="btn btn-success btn-sm">Activate</a>
-                                @endif
-                            </td>
-                            
-                            <td>
-                                @if($program->image)
-                                    <img src="{{ asset('storage/' . $program->image) }}" width="80" height="50" style="object-fit: cover; border-radius: 8px;">
-                                @else
-                                    <img src="{{ asset('default-image.jpg') }}" width="80" height="50" style="object-fit: cover; border-radius: 8px;">
-                                @endif
-                            </td>
-                            <td>
-                                <!-- Trigger Delete Modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $program->id }}">
-                                    Delete
-                                </button>
+    <div class="row g-4">
+        @foreach($programs as $program)
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card program-card shadow-sm border-0">
+                    <img src="{{ $program->image ? asset('storage/' . $program->image) : asset('default-image.jpg') }}"
+                         class="card-img-top program-img"
+                         alt="Program Image">
 
-                                <!-- Delete Confirmation Modal -->
-                                <div class="modal fade" id="deleteModal{{ $program->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $program->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <!-- Green Gradient Header -->
-                                            <div class="modal-header" style="background: linear-gradient(to right, #000000, #06af00); color: white;">
-                                                <h5 class="modal-title" id="deleteModalLabel{{ $program->id }}">Confirm Deletion</h5>
-                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body text-start">
-                                                Are you sure you want to delete the program <strong>"{{ $program->title }}"</strong>?
-                                            </div>
-                                            <!-- Green Gradient Footer -->
-                                            <div class="modal-footer" style="background: linear-gradient(to right, #000000, #257e02);">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <a href="{{ route('programs.delete', $program->id) }}" class="btn btn-danger">Yes, Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- End Modal -->
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $program->title }}</h5>
+                        <p class="card-text">{{ \Str::limit($program->description, 100) }}</p>
+
+                        <p class="mb-2">
+                            <span class="badge {{ $program->status == 1 ? 'bg-success' : 'bg-secondary' }}">
+                                {{ $program->status == 1 ? 'Active' : 'Inactive' }}
+                            </span>
+                        </p>
+
+                        <div class="d-flex flex-wrap gap-2">
+                            @if($program->status == 1)
+                                <a href="{{ route('programs.updateStatus', $program->id) }}" class="btn btn-warning btn-sm">Deactivate</a>
+                            @else
+                                <a href="{{ route('programs.updateStatus', $program->id) }}" class="btn btn-success btn-sm">Activate</a>
+                            @endif
+
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $program->id }}">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="deleteModal{{ $program->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $program->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel{{ $program->id }}">Confirm Deletion</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete the program <strong>"{{ $program->title }}"</strong>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <a href="{{ route('programs.delete', $program->id) }}" class="btn btn-danger">Yes, Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-    <style>
-        /* Table Styling */
-        .custom-table {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(0, 128, 0, 0.2);
-            width: 100%;
-            margin-top: 20px;
+
+</div>
+
+<!-- Styles -->
+<style>
+    .program-card {
+        border-radius: 10px;
+        transition: transform 0.2s ease;
+        height: 100%;
+    }
+
+    .program-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .program-img {
+        height: 200px; /* Fixed height */
+        object-fit: cover; /* Maintain aspect ratio and cover space */
+        width: 100%; /* Full width of the card */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .modal-header {
+        background: linear-gradient(to right, #000000, #06af00);
+        color: white;
+    }
+
+    .modal-footer {
+        background: linear-gradient(to right, #000000, #257e02);
+    }
+
+    .btn-close-white {
+        color: white;
+    }
+
+    @media (max-width: 576px) {
+        .program-img {
+            height: 150px; /* Adjusted height for smaller screens */
         }
-    
-        /* Table Header Styling */
-        .custom-table thead.table-header {
-            background: linear-gradient(to right, #007f00, #00b300); /* Green gradient */
+
+        .card-title {
+            font-size: 1rem;
         }
-    
-        .custom-table thead.table-header th {
-            color: white !important;
-            font-weight: 600;
-            padding: 12px;
-            font-size: 1.1rem;
+
+        .card-text {
+            font-size: 0.9rem;
         }
-    
-        /* Table Row Styling */
-        .custom-table tbody tr {
-            border-bottom: 1px solid #dee2e6;
-            transition: background-color 0.3s ease;
+
+        .btn {
+            font-size: 0.75rem;
+            padding: 4px 10px;
         }
-    
-        .custom-table tbody tr:nth-child(even) {
-            background-color: #f8fff8; /* Light green for even rows */
-        }
-    
-        .custom-table tbody tr:hover {
-            background-color: #e6ffe6; /* Light hover effect */
-        }
-    
-        /* Badge Styling for Status */
-        .badge.bg-success {
-            background-color: #28a745 !important;
-        }
-    
-        .badge.bg-secondary {
-            background-color: #6c757d !important;
-        }
-    
-        /* Image Styling */
-        .custom-table img {
-            object-fit: cover;
-            border-radius: 8px;
-        }
-    
-        /* Button Styling */
-        .btn-danger {
-            background-color: #dc3545;
-            border-color: #dc3545;
-        }
-    
-        .btn-danger:hover {
-            background-color: #c82333;
-            border-color: #bd2130;
-        }
-    
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-    
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-        }
-    
-        /* Modal Styling */
-        .modal-header {
-            background: linear-gradient(to right, #000000, #06af00);
-            color: white;
-        }
-    
-        .modal-footer {
-            background: linear-gradient(to right, #000000, #257e02);
-        }
-    
-        .btn-close-white {
-            color: white;
-        }
-    </style>
-    
+    }
+</style>
 @endsection
