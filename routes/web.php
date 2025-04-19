@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 // Home Route - Public route for the homepage
 Route::get('/', [HomeController::class, 'Home'])->name('Homepage');
+// website about page 
+Route::get('/About', [HomeController::class, 'About'])->name('Aboutpage');
+// website privact policy page 
+Route::get('/Privacy', [HomeController::class, 'Privacy'])->name('Privacypage');
 
 // Admin Login Routes - For login page and login submission
 Route::get('/login-ipcih-1947', [AuthController::class, 'login'])->name('login');

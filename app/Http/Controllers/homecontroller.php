@@ -15,4 +15,14 @@ class homecontroller extends Controller
         // Pass the programs to the view (home view or any specific page)
         return view('pages.home', compact('programs'));
     }
+    public function privacy()
+    {
+
+        return view('pages.privacy');
+    }
+    public function about()
+    {
+
+        return view('pages.about');
+    }
 }

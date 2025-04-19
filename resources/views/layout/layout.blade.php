@@ -53,10 +53,10 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <!-- Navbar Links Centered -->
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/about">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/core-programs">Core Programs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('Homepage') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('Aboutpage') }}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('Privacypage') }}">Privacy and Policy</a></li>
                 </ul>
 
                 <!-- Social Media Icons -->
