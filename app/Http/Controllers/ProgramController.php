@@ -74,5 +74,19 @@ class ProgramController extends Controller
         // If program not found, redirect with error message
         return redirect()->back()->with('error', 'Program not found.');
     }
+    public function updateStatus($id)
+{
+    // Find the program by ID
+    $program = Program::findOrFail($id);
+
+    // Toggle the status (0 becomes 1, 1 becomes 0)
+    $program->status = $program->status == 1 ? 0 : 1;
+
+    // Save the program with the new status
+    $program->save();
+
+    // Return a success response or redirect back with a success message
+    return redirect()->back()->with('success', 'Program status updated successfully!');
+}
     
 }

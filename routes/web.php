@@ -42,3 +42,4 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 // Route to view all total core programs (public or admin can access based on your needs)
 Route::get('/total-core-programs', [ProgramController::class, 'allCorePrograms'])->name('total.core.programs');
 Route::get('/programs/delete/{id}', [ProgramController::class, 'destroy'])->name('programs.delete');
+Route::get('/programs/update-status/{id}', [ProgramController::class, 'updateStatus'])->name('programs.updateStatus');

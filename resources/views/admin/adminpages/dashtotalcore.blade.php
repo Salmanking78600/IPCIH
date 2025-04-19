@@ -49,10 +49,13 @@
                             <td>
                                 @if($program->status == 1)
                                     <span class="badge bg-success">Active</span>
+                                    <a href="{{ route('programs.updateStatus', $program->id) }}" class="btn btn-warning btn-sm">Deactivate</a>
                                 @else
                                     <span class="badge bg-secondary">Inactive</span>
+                                    <a href="{{ route('programs.updateStatus', $program->id) }}" class="btn btn-success btn-sm">Activate</a>
                                 @endif
                             </td>
+                            
                             <td>
                                 @if($program->image)
                                     <img src="{{ asset('storage/' . $program->image) }}" width="80" height="50" style="object-fit: cover; border-radius: 8px;">
