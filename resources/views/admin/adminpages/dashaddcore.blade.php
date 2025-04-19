@@ -8,32 +8,43 @@
 
     <!-- Success Message -->
     @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
     @endif
 
     <!-- Add Program Form -->
     <form action="{{ route('programs.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <!-- Program Title -->
-        <div class="mb-3">
-            <label for="title" class="form-label text-white">Program Title</label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title') }}" required>
-            @error('title')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+       <!-- Program Title -->
+<div class="mb-3">
+    <label for="title" class="form-label text-white">Program Title</label>
+    <input type="text" class="form-control @error('title') is-invalid @enderror"
+           id="title" name="title" value="{{ old('title') }}" required maxlength="50">
+    <small class="form-text text-light" id="title-count">0 / 50</small>
+    @error('title')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
 
-        <!-- Program Description -->
-        <div class="mb-3">
-            <label for="description" class="form-label text-white">Description</label>
-            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="4" required>{{ old('description') }}</textarea>
-            @error('description')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+<!-- Program Description -->
+<!-- Program Description -->
+<div class="mb-3">
+    <label for="description" class="form-label text-white">Description</label>
+    <textarea class="form-control @error('description') is-invalid @enderror"
+              id="description" name="description" rows="4" required maxlength="100">{{ old('description') }}</textarea>
+    <small class="form-text text-light" id="description-count">0 / 100</small>
+    @error('description')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
 
         <!-- Program Image -->
         <div class="mb-3">
@@ -60,6 +71,29 @@
         <button type="submit" class="btn btn-success">Add Program</button>
     </form>
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const titleInput = document.getElementById('title');
+        const titleCount = document.getElementById('title-count');
+        const descriptionInput = document.getElementById('description');
+        const descriptionCount = document.getElementById('description-count');
+
+        function updateCount(input, counter, max) {
+            counter.textContent = `${input.value.length} / ${max}`;
+        }
+
+        titleInput.addEventListener('input', () => updateCount(titleInput, titleCount, 50));
+        descriptionInput.addEventListener('input', () => updateCount(descriptionInput, descriptionCount, 100));
+
+        // Initial update
+        updateCount(titleInput, titleCount, 50);
+        updateCount(descriptionInput, descriptionCount, 100);
+    });
+</script>
+
+
 
 <!-- In-page CSS for Form Styling -->
 @section('styles')
