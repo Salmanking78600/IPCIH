@@ -135,28 +135,28 @@
     {{-- our core programs area  --}}
     <div class="core-program-container py-5">
         <h2 class="core-program-heading text-center mb-5 text-white">Our Core Programs</h2>
-
+    
         <div class="swiper coreProgramSwiper px-2">
             <div class="swiper-wrapper">
                 @foreach ($programs as $program)
                     <div class="swiper-slide">
                         <div class="card program-card position-relative overflow-hidden border-0 shadow-lg rounded-4"
                             style="height: 350px; background: linear-gradient(135deg, #0f9b0f, #000000);">
-
+                            
                             <!-- Image -->
                             @if ($program->image)
-                                <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top"
-                                    alt="{{ $program->title }}" style="height: 200px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $program->image) }}" class="card-img-top program-image"
+                                    alt="{{ $program->title }}">
                             @else
-                                <img src="{{ asset('default-image.jpg') }}" class="card-img-top"
-                                    alt="{{ $program->title }}" style="height: 200px; object-fit: cover;">
+                                <img src="{{ asset('default-image.jpg') }}" class="card-img-top program-image"
+                                    alt="{{ $program->title }}">
                             @endif
-
+    
                             <!-- Title -->
                             <div class="card-body text-white">
                                 <h5 class="card-title fw-bold">{{ $program->title }}</h5>
                             </div>
-
+    
                             <!-- Description Overlay -->
                             <div
                                 class="program-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center px-3">
@@ -168,43 +168,101 @@
             </div>
         </div>
     </div>
-    <style>
-        .program-card {
-            position: relative;
-            height: 280px !important;
-            transition: transform 0.3s ease;
-        }
-
-        .program-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 25px rgba(0, 255, 150, 0.3);
-        }
-
-        .program-overlay {
-            background: rgba(39, 136, 0, 0.85);
-            /* Slate semi-transparent */
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 1rem;
-        }
-
-        .program-card:hover .program-overlay {
-            opacity: 1;
-        }
-
-        .card-title {
-            color: white !important;
-        }
-
-        .card-text {
-            color: white !important;
-        }
-    </style>
+    
 
 
+<style>
+    .program-card {
+    position: relative;
+    height: 350px !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.program-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 255, 150, 0.3);
+}
 
+.program-image {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 0.5rem;
+}
 
+.program-overlay {
+    background: rgba(39, 136, 0, 0.85);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 1rem;
+}
+
+.program-card:hover .program-overlay {
+    opacity: 1;
+}
+
+.card-title, .card-text {
+    color: white !important;
+    text-transform: capitalize; /* Capitalize the first letter of each word */
+}
+
+.core-program-container {
+    background-color: #2a2a2a;
+    padding: 2rem 0;
+}
+
+.core-program-heading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.swiper.coreProgramSwiper {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    border: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-title {
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: white;
+    text-transform: capitalize;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.program-card:hover .card-title,
+.program-card:hover .card-text {
+    color: white; /* Make sure text is white on hover */
+}
+
+</style>
 
 
 
