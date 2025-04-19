@@ -174,7 +174,7 @@
 <style>
     .program-card {
     position: relative;
-    height: 350px !important;
+    height: 300px !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -191,7 +191,7 @@
 }
 
 .program-overlay {
-    background: rgba(39, 136, 0, 0.85);
+    background: linear-gradient(135deg, rgba(39, 136, 0, 0.85), rgba(0, 128, 0, 0.85));
     opacity: 0;
     transition: opacity 0.3s ease;
     border-radius: 1rem;
